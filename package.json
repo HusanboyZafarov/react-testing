@@ -9,13 +9,17 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "server": "json-server --watch src/data/db.json --delay 500",
-    "start": "concurrently \"npm run server\" \"npm run dev\""
+    "start": "concurrently \"npm run server\" \"npm run dev\"",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.3.0",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/themes": "^2.0.3",
     "@reduxjs/toolkit": "^1.9.7",
+    "@testing-library/react": "^16.2.0",
     "axios": "^1.7.9",
     "delay": "^6.0.0",
     "json-server": "^0.17.4",
@@ -31,21 +35,29 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.4.0",
+    "@mswjs/data": "^0.16.2",
     "@tailwindcss/typography": "^0.5.16",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20.17.17",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/ui": "^3.0.5",
     "autoprefixer": "^10.4.20",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.19",
+    "jsdom": "^26.0.0",
+    "msw": "^2.7.0",
     "postcss": "^8.5.1",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.7.3",
-    "vite": "^5.4.14"
+    "vite": "^5.4.14",
+    "vitest": "^3.0.5"
   }
 }
