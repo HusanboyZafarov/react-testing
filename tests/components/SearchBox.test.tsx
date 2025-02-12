@@ -1,7 +1,39 @@
-import { it, expect, describe } from 'vitest'
+import { render, screen } from "@testing-library/react";
+import SearchBox from "../../src/components/SearchBox";
+import userEvent from "@testing-library/user-event";
 
-describe('SearchBox', () => {
-    it('should render an input for special ', () => {
-        
-    })
-})
+describe("SearchBox", () => {
+  const renderSearchBox = () => {
+    const onChange = vi.fn();
+    render(<SearchBox onChange={onChange} />);
+
+    return {
+      input: screen.getByPlaceholderText(/search/i),
+      onChange,
+      user: userEvent.setup(),
+    };
+  };
+
+  it("should render an input for special ", () => {
+    const { input } = renderSearchBox();
+
+    expect(input).toBeInTheDocument();
+  });
+
+  it("should call onChange when Enter is pressed", async () => {
+    const { onChange, input, user } = renderSearchBox();
+
+    const searchTerm = "searchTerm";
+    await user.type(input, searchTerm + "{enter}");
+
+    expect(onChange).toHaveBeenCalledWith(searchTerm);
+  });
+
+  it("should not call onChange if input field is empty", async () => {
+    const { onChange, input, user } = renderSearchBox();
+
+    await user.type(input, "{enter}");
+
+    expect(onChange).not.toHaveBeenCalled();
+  });
+});
