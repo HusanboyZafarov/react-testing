@@ -5,8 +5,13 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import QuantitySelector from "../components/QuantitySelector";
 import { Category, Product } from "../entities";
+import { useQuery } from "react-query";
 
 function BrowseProducts() {
+  useQuery({
+    queryKey: ["categories"],
+    queryFn: () => axios.get("/categories").then((res) => res.data),
+  });
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [isProductsLoading, setProductsLoading] = useState(false);
