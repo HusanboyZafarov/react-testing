@@ -1,5 +1,4 @@
 import { describe, it } from "vitest";
-import { db } from "./mocks/db";
 
 describe("group", () => {
   it("should", () => {

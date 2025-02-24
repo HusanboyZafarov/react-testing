@@ -1,7 +1,5 @@
 import * as z from "zod";
 
-const englishStringRegEx = /^[A-Za-z0-9\s!@#$%^.,%?&*()_+-]*$/;
-
 export const productFormSchema = z.object({
   id: z.number().optional(),
   name: z
