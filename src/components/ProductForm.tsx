@@ -13,7 +13,7 @@ import ErrorMessage from "./ErrorMessage";
 
 interface Props {
   product?: Product;
-  onSubmit: (product: ProductFormData) => Promise<void>;
+  onSubmit?: (product: ProductFormData) => Promise<void>;
 }
 
 const ProductForm = ({ product, onSubmit }: Props) => {
@@ -38,7 +38,7 @@ const ProductForm = ({ product, onSubmit }: Props) => {
       onSubmit={handleSubmit(async (formData) => {
         try {
           setSubmitting(true);
-          await onSubmit(formData);
+          await onSubmit!(formData);
         } catch (error) {
           toast.error("An unexpected error occurred");
         } finally {
@@ -49,7 +49,12 @@ const ProductForm = ({ product, onSubmit }: Props) => {
     >
       <Box>
         <TextField.Root className="max-w-sm">
-          <TextField.Input placeholder="Name" {...register("name")} size="3" />
+          <TextField.Input
+            placeholder="Name"
+            {...register("name")}
+            size="3"
+            autoFocus
+          />
         </TextField.Root>
         <ErrorMessage error={errors.name} />
       </Box>
@@ -75,7 +80,7 @@ const ProductForm = ({ product, onSubmit }: Props) => {
               defaultValue={product?.categoryId.toString() || ""}
               onValueChange={(value) => field.onChange(+value)}
             >
-              <Select.Trigger placeholder="Category" />
+              <Select.Trigger aria-label="Category" placeholder="Category" />
               <Select.Content>
                 <Select.Group>
                   {categories?.map((category) => (

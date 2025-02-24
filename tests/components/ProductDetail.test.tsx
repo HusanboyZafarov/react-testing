@@ -5,9 +5,9 @@ import {
 } from "@testing-library/react";
 import { delay, http, HttpResponse } from "msw";
 import ProductDetail from "../../src/components/ProductDetail";
+import AllProviders from "../AllProviders";
 import { db } from "../mocks/db";
 import { server } from "../mocks/server";
-import AllProviders from "../AllProviders";
 
 describe("ProductDetail", () => {
   let productId: number;
