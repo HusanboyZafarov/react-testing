@@ -1,8 +1,4 @@
-import {
-  render,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/react";
+import { screen, waitForElementToBeRemoved } from "@testing-library/react";
 import { navigateTo } from "../utils";
 import { db } from "../mocks/db";
 import { Product } from "../../src/entities";
